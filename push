@@ -1,0 +1,18 @@
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+if [ $1 == "--help" ]
+  then 
+    echo 'Usage:'
+    echo '  ./rpi-cpu-temperature/pull | ./csv/push --file data.csv' 
+    exit
+fi
+
+if [ -f $2 ]
+  then
+    read input
+    echo $input | $DIR/node_modules/.bin/json2csv --no-header >> $2 
+  else
+    read input
+    echo $input | $DIR/node_modules/.bin/json2csv >> $2 
+fi
+
+
